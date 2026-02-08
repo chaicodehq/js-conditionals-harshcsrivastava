@@ -30,4 +30,21 @@
  */
 export function calculateShipping(weight, country, orderTotal) {
   // Your code here
+
+  if(weight <= 0 || orderTotal < 0) return -1;
+  const domestic = country === "US" ? true : false;
+
+  if(orderTotal > 50 && domestic) return 0;
+  if(orderTotal > 100 && !domestic) return 0;
+
+  if(domestic){
+    if(weight > 5) return 15;
+    if(weight > 1) return 10;
+    return 5;
+  }else{
+    if(weight > 5) return 40;
+    if(weight > 1) return 25;
+    return 15;
+  }
+  
 }
